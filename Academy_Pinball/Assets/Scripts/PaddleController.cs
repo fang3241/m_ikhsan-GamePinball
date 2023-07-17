@@ -30,7 +30,7 @@ public class PaddleController : MonoBehaviour
 
         if (Input.GetKey(keyInput))
         {
-            Debug.Log("pressed");
+            //Debug.Log("pressed");
             jointSpring.targetPosition = targetPressed;
         }
         else

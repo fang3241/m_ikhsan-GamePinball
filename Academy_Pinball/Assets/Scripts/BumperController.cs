@@ -8,12 +8,19 @@ public class BumperController : MonoBehaviour
     public float multiplier;
     public Animator animator;
 
-    public Color color;
+    public Color[] colors;
+    
+
+    private int hitCounter;
+    private Renderer ren;
 
     private void Start()
     {
-        GetComponent<Renderer>().material.color = color;
+        hitCounter = 0;
+        ren = GetComponent<Renderer>();
         animator = GetComponent<Animator>();
+
+        ren.material.color = colors[hitCounter];
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -24,7 +31,14 @@ public class BumperController : MonoBehaviour
             bolaRb.velocity *= multiplier;
 
             animator.SetTrigger("hit");
+            ChangeColorOnHit();
             Debug.Log("nabrak");
         }
+    }
+
+    private void ChangeColorOnHit()
+    {
+        hitCounter++;
+        ren.material.color = colors[hitCounter % 3];
     }
 }

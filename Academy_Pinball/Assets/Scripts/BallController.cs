@@ -5,7 +5,7 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     public float maxSpeed;
-
+    public Vector3 defaultPos;
     private Rigidbody rig;
     // Start is called before the first frame update
     void Start()
@@ -20,5 +20,11 @@ public class BallController : MonoBehaviour
         {
             rig.velocity = rig.velocity.normalized * maxSpeed;
         }
+    }
+
+    public void Respawn()
+    {
+        transform.position = defaultPos;
+        rig.velocity = Vector3.zero;
     }
 }
